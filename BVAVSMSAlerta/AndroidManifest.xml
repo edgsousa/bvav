@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pt.bvav.smsalert"
+    android:versionCode="6"
+    android:versionName="1.1e" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="pt.bvav.smsalert.permission.C2D_MESSAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data android:name="com.google.android.gms.version"
+           android:value="@integer/google_play_services_version"/>
+        <receiver android:name="pt.bvav.smsalert.OnSMSReceived" >
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="pt.bvav.smsalert.Notifier" >
+            <intent-filter>
+                <action android:name="pt.bvav.smsalert.NOTIFYUSER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="pt.bvav.smsalert.Settings"
+            android:label="@string/title_activity_settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="pt.bvav.smsalert.Alert"
+            android:label="@string/title_activity_alert" >
+        </activity>
+        <receiver
+             android:permission="com.google.android.c2dm.SEND"
+             android:name=".gcm.AlertPushMessageReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".gcm.AlertPushMessageService"/>
+        <service android:name="pt.bvav.smsalert.WakefullService" />
+    </application>
+
+</manifest>

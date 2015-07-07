@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">BVAV SMS Alerta</string>
+    <string name="title_activity_settings" translatable="false">BVAV SMS Alerta</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_alert" translatable="false">Alert</string>
+    
+    <string name="defaultphone" translatable="false">912345678</string>
+    
+    <string-array name="oldphones">
+        <item>987654321</item>
+    </string-array>
+</resources>
